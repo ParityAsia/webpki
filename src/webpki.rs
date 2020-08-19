@@ -253,7 +253,7 @@ impl<'a> EndEntityCert<'a> {
 /// essential elements of trust anchors. The `webpki::trust_anchor_util` module
 /// provides functions for converting X.509 certificates to to the minimized
 /// `TrustAnchor` representation, either at runtime or in a build script.
-#[derive(Debug, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct TrustAnchor<'a> {
     /// The value of the `subject` field of the trust anchor.
     pub subject: &'a [u8],
@@ -267,9 +267,9 @@ pub struct TrustAnchor<'a> {
 }
 
 /// Trust anchors which may be used for authenticating servers.
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone)]
 pub struct TLSServerTrustAnchors<'a>(pub &'a [TrustAnchor<'a>]);
 
 /// Trust anchors which may be used for authenticating clients.
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone)]
 pub struct TLSClientTrustAnchors<'a>(pub &'a [TrustAnchor<'a>]);
