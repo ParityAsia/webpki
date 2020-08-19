@@ -25,6 +25,7 @@ pub fn expect_tag_and_get_value<'a>(
     ring::io::der::expect_tag_and_get_value(input, tag).map_err(|_| Error::BadDER)
 }
 
+#[derive(Clone)]
 pub struct Value<'a> {
     tlv: untrusted::Input<'a>,
     value: untrusted::Input<'a>,

@@ -109,6 +109,7 @@ pub use time::Time;
 /// deterministic, so if these tasks are done in multiple threads, it is
 /// probably best to just call `EndEntityCert::from` multiple times (before each
 /// operation) for the same DER-encoded ASN.1 certificate bytes.
+#[derive(Clone)]
 pub struct EndEntityCert<'a> {
     inner: cert::Cert<'a>,
 }
@@ -252,7 +253,7 @@ impl<'a> EndEntityCert<'a> {
 /// essential elements of trust anchors. The `webpki::trust_anchor_util` module
 /// provides functions for converting X.509 certificates to to the minimized
 /// `TrustAnchor` representation, either at runtime or in a build script.
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct TrustAnchor<'a> {
     /// The value of the `subject` field of the trust anchor.
     pub subject: &'a [u8],
